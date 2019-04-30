@@ -1,4 +1,5 @@
 /* global Vue */
 Vue.component('app', {
-  template: '<todos></todos>'
+  props: ['todos'],
+  template: '<todos v-bind:todos="todos"></todos>'
 });
