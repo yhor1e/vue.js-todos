@@ -1,7 +1,11 @@
-.readOnly input {
+.readOnly input[type=text] {
   display: none;
 }
 
 .editing span {
   display: none;
+}
+
+.done span {
+  text-decoration: line-through;
 }

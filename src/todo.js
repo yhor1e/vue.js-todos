@@ -1,25 +1,27 @@
 /* global Vue */
 Vue.component('todo-item', {
   props: ['todo'],
-  template: `<li v-bind:class="{ editing: editing, readOnly: readOnly } "v-on:dblclick="changeState()">
-               <span>{{ todo.text }}</span>
-               <input v-on:blur="changeState()" v-on:keyup.enter="changeVal()" type="text" v-model="todo.text" autofocus>
+  template: `<li v-bind:class="{ editing: editing, readOnly: readOnly, done: done }">
+              <input type="checkbox" v-model="done">
+              <span v-on:dblclick="changeState()">{{ todo.text }}</span>
+              <input v-on:blur="changeState()" v-on:keyup.enter="changeVal()" type="text" v-model="todo.text" autofocus>
              </li>`,
-  data: function(){
+  data: function () {
     return {
       editing: false,
-      readOnly: true
+      readOnly: true,
+      done: true
     };
   },
   methods: {
-    changeState: function(){
+    changeState: function () {
       this.$data.editing = !this.editing;
       this.$data.readOnly = !this.readOnly;
-      if(this.editing){
-        this.$nextTick(() => this.$el.getElementsByTagName('input')[0].focus());
+      if (this.editing) {
+        this.$nextTick(() => this.$el.getElementsByTagName('input')[1].focus());
       }
     },
-    changeVal: function(){
+    changeVal: function () {
       this.$el.children[1].blur();
     }
   },
