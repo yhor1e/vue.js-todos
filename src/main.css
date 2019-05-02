@@ -1,0 +1,7 @@
+.readOnly input {
+  display: none;
+}
+
+.editing span {
+  display: none;
+}
