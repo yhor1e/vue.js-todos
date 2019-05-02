@@ -5,6 +5,7 @@ Vue.component('todo-item', {
               <input type="checkbox" v-model="done">
               <span v-on:dblclick="changeState()">{{ todo.text }}</span>
               <input v-on:blur="changeState()" v-on:keyup.enter="changeVal()" type="text" v-model="todo.text" autofocus>
+              <input v-on:click="remove()" type="button" value="delete">
              </li>`,
   data: function () {
     return {
@@ -23,6 +24,9 @@ Vue.component('todo-item', {
     },
     changeVal: function () {
       this.$el.children[1].blur();
+    },
+    remove: function(){
+      Vue.delete(this.$parent.todos, this.$parent.todos.findIndex(o => o.id === this.todo.id));
     }
   },
 });
